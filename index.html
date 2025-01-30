@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pincode Picker</title>
+    <link rel="icon" href="d:\codepicker\appimg.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pincode Picker</h1>
+        <input type="text" id="locationInput" placeholder="Enter your location (city)😊" oninput="showSuggestions()" />
+        <button onclick="getPincode()">Get Pincode🤗</button>
+        <div id="suggestions" class="suggestions"></div>
+        <p id="pincode">Your pincode will appear here🙈</p>
+
+        <h2>ADDITIONAL PINCODES:</h2>
+        <hr>
+
+        <h2>Villupuram Pincode Data</h2>
+        <table>
+            <tr>
+                <th>Pincode</th>
+                <th>Area</th>
+                <th>Type</th>
+            </tr>
+            <tr><td>605601</td><td>Villupuram</td><td>Urban</td></tr>
+            <tr><td>605602</td><td>Arakkonam</td><td>Rural</td></tr>
+            <tr><td>605603</td><td>Kallakurichi</td><td>Rural</td></tr>
+        </table>
+
+        <h2>Kanchipuram Pincode Data</h2>
+        <table>
+            <tr>
+                <th>Pincode</th>
+                <th>Area</th>
+                <th>Type</th>
+            </tr>
+            <tr><td>631501</td><td>Kanchipuram</td><td>Urban</td></tr>
+            <tr><td>631502</td><td>Chengalpattu</td><td>Urban</td></tr>
+            <tr><td>631503</td><td>Kundrathur</td><td>Urban</td></tr>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
