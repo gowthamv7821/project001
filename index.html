@@ -3,45 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pincode Picker</title>
-    <link rel="icon" href="d:\codepicker\appimg.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
+    <title>Gift Box for Kutti ❤️</title>
+    <style>
+        body {
+            background-color: #ffdde1;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background: red;
+            position: relative;
+            display: inline-block;
+            margin-top: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+        }
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+        .gift-box:before {
+            content: '🎁';
+            font-size: 100px;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        .photo-container {
+            display: none;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .photo-container img {
+            width: 250px;
+            height: 450px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        .photo-details {
+            display: none;
+            font-size: 18px;
+            color: black;
+            font-weight: bold;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        .final-message {
+            display: none;
+            font-size: 24px;
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Pincode Picker</h1>
-        <input type="text" id="locationInput" placeholder="Enter your location (city)😊" oninput="showSuggestions()" />
-        <button onclick="getPincode()">Get Pincode🤗</button>
-        <div id="suggestions" class="suggestions"></div>
-        <p id="pincode">Your pincode will appear here🙈</p>
-
-        <h2>ADDITIONAL PINCODES:</h2>
-        <hr>
-
-        <h2>Villupuram Pincode Data</h2>
-        <table>
-            <tr>
-                <th>Pincode</th>
-                <th>Area</th>
-                <th>Type</th>
-            </tr>
-            <tr><td>605601</td><td>Villupuram</td><td>Urban</td></tr>
-            <tr><td>605602</td><td>Arakkonam</td><td>Rural</td></tr>
-            <tr><td>605603</td><td>Kallakurichi</td><td>Rural</td></tr>
-        </table>
-
-        <h2>Kanchipuram Pincode Data</h2>
-        <table>
-            <tr>
-                <th>Pincode</th>
-                <th>Area</th>
-                <th>Type</th>
-            </tr>
-            <tr><td>631501</td><td>Kanchipuram</td><td>Urban</td></tr>
-            <tr><td>631502</td><td>Chengalpattu</td><td>Urban</td></tr>
-            <tr><td>631503</td><td>Kundrathur</td><td>Urban</td></tr>
-        </table>
+    <div class="hearts"></div>
+    <h2 id="clickText">Click the Gift Box 🎁 to Open</h2>
+    <div class="gift-box" onclick="openGift()"></div>
+    <div class="photo-container" id="photoContainer">
+        <img id="photo" src="" alt="Photo" onclick="showDetails()">
     </div>
-    <script src="script.js"></script>
+    <div class="photo-details" id="photoDetails"></div>
+    <div class="final-message" id="finalMessage">I ❤️ You Dear Kutti! Thanks for being with me. Happy Valentine’s Day! ❤️</div>
+
+    <script>
+        const photos = [
+            { src: "IMG-20240724-WA0002.jpg", details: "This was our first trip(KOVIL🤔) together!" },
+            { src: "IMG-20240702-WA0016.jpg", details: "After the bike ride with my lovable one 🤗." },
+            { src: "IMG-20241213-WA0015.jpg", details: "Laughing together on a rainy day😘." },
+            { src: "IMG-20241120-WA0040.jpg", details: "The moment you smiled at me🥰." }
+        ];
+        let currentIndex = 0;
+
+        function openGift() {
+            if (currentIndex < photos.length) {
+             document.getElementById("clickText").style.display = "none";
+             document.querySelector('.gift-box').style.display = 'none';
+        
+            let photoContainer = document.getElementById("photoContainer");
+            let clickToNextText = document.getElementById("clickToNextText");
+
+            photoContainer.style.display = "block";
+            setTimeout(() => { photoContainer.style.opacity = 1; }, 100);
+
+        // Load the first image
+            document.getElementById("photo").src = photos[currentIndex].src;
+
+        // Show "Click the image to next" **before clicking**
+            clickToNextText.style.display = "block";
+            }
+        }
+
+        function showDetails() {
+            let photoElement = document.getElementById("photo");
+            let details = document.getElementById("photoDetails");
+            // Add a flip effect to the image
+            photoElement.style.transform = "rotateY(180deg)";
+            setTimeout(() => {
+                details.innerText = photos[currentIndex].details;
+                details.style.display = "block";
+                setTimeout(() => { details.style.opacity = 1; }, 100);
+            }, 500); // Delay to show text after flip
+            currentIndex++;
+            if (currentIndex < photos.length) {
+                setTimeout(() => {
+                    photoElement.style.transform = "rotateY(0deg)"; // Reset the rotation
+                    document.getElementById("photo").src = photos[currentIndex].src;
+                    details.style.opacity = 0;
+                    setTimeout(() => { details.style.display = "none"; }, 1000);
+                }, 2000);
+            } else {
+                // Show the final message after all photos and descriptions are shown
+                setTimeout(() => {
+                    document.getElementById("finalMessage").style.display = "block";
+                }, 2000);
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.querySelector(".hearts").appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
 </body>
 </html>
